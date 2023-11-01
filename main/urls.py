@@ -1,10 +1,9 @@
 from django.urls import path
-from .views import (
-     HomeView,
-     AddTodoView
-)
+from .views import HomeTemplateView, TodosTemplateView, AddTodosTemplateView, EditTodosTemplateView
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('', AddTodoView.as_view(), name='add_todo')
+    path('', HomeTemplateView.as_view(), name='home'),
+    path('todos', TodosTemplateView.as_view(), name='todos'),
+    path('add_todos', AddTodosTemplateView.as_view(), name='add_todos'),
+    path('edit_todo', EditTodosTemplateView.as_view(), name='edit_todos'),
 ]

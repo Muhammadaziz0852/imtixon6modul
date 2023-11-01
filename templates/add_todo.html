@@ -2,9 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> TODOS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto 0;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 20px;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        a[href="/accounts/logout"] {
+            color: #dc3545;
+        }
+
+        a[href="/accounts/logout"]:hover {
+            color: #a30015;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+
+    </style>
 </head>
 <body>
-
+<div class="container">
+    <a href="/">HOME</a>
+    <a href="/todos">MY TODOS</a>
+    {% if user.is_authenticated %}
+        <a href="">{{ user.first_name }} {{ user.last_name }}</a>
+        <a href="/accounts/logout">LOGOUT</a>
+        <a href="/add_todos">ADD TODO</a>
+    {% else %}
+        <a href="/accounts/login">LOGIN</a>
+    {% endif %}
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="todo">Enter TODO text</label>
+        <input type="text" id="todo" name="todo" placeholder="Enter TODO text"><br>
+        <button type="submit">ADD TODO</button>
+    </form>
+</div>
 </body>
 </html>
